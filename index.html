@@ -1,0 +1,42 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="game-info">
+            <div class="game-name">Hangman</div>
+            <div class="catagory">
+                word from: <span></span>
+            </div>
+        </div>
+        <hr>
+        <div class="row">
+            <div class="hangman-draw">
+              <div class="the-draw">
+                <div class="the-stand"></div>
+                <div class="the-hang"></div>
+                <div class="the-rope"></div>
+                <div class="the-man">
+                  <div class="head"></div>
+                  <div class="body"></div>
+                  <div class="hands ggg"></div>
+                  <div class="legs"></div>
+                </div>
+              </div>
+            </div>
+            <div class="letters"></div>
+        </div>
+        <hr>
+        <div class="letters-guess"></div>
+    </div>
+    <audio id="success" src="suc.mp3" preload="auto"></audio>
+    <audio id="failed" src="flf.mp3" preload="auto"></audio>
+    
+    <footer class="foot">designed by <span id="own" class="owner">yousif kawa</span></footer>
+    <script src="main.js"></script>
+</body>
+</html>

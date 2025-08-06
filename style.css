@@ -1,0 +1,325 @@
+/* Global reset */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  color: #eee;
+}
+
+body {
+  font-family: Tahoma, Arial, sans-serif;
+  background-color: #121212;
+  line-height: 1.5;
+}
+
+.container {
+  width: 95%;
+  max-width: 700px;
+  margin: 20px auto;
+  padding: clamp(16px, 4vw, 28px);
+  background-color: #1e1e1e;
+  border-radius: 12px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+}
+
+/* Game Info */
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+hr {
+  border: 1px solid #333;
+  margin: 16px 0;
+}
+
+.game-info {
+  display: flex;
+  justify-content: space-between;
+  font-size: clamp(14px, 2vw, 18px);
+}
+
+.game-info .game-name {
+  font-weight: bold;
+  color: #03dac6;
+}
+
+.game-info .catagory span {
+  text-transform: capitalize;
+  color: #ff4081;
+  font-weight: bold;
+}
+
+/* Hangman Draw */
+.hangman-draw {
+  flex: 1;
+  background-color: #2a2a2a;
+  padding: 20px;
+  height: 324px;
+  border-radius: 8px;
+  position: relative;
+}
+
+.hangman-draw .the-draw {
+  width: 60px;
+  height: 280px;
+  border-bottom: 4px solid #eee;
+  position: relative;
+  margin: auto;
+  left: -60px;
+  display: none;
+}
+
+/* Stand */
+.hangman-draw .the-stand:before {
+  content: "";
+  width: 4px;
+  position: absolute;
+  background-color: #eee;
+  height: 100%;
+  left: 50%;
+  margin-left: -2px;
+  display: none;
+}
+
+/* Top bar and rope */
+.hangman-draw .the-hang:before {
+  content: "";
+  height: 4px;
+  position: absolute;
+  background-color: #eee;
+  width: 100%;
+  left: 11px;
+  margin-top: 10px;
+  margin-left: 20px;
+  display: none;
+}
+
+.hangman-draw .the-hang:after {
+  content: "";
+  width: 4px;
+  position: absolute;
+  background-color: #eee;
+  height: 23px;
+  left: 11px;
+  margin-top: 13px;
+  margin-left: 76px;
+  display: none;
+}
+
+/* Head */
+.hangman-draw .head:after {
+  content: "";
+  width: 40px;
+  height: 40px;
+  position: absolute;
+  border: 4px dashed #ececec;
+  border-radius: 50%;
+  background-color: transparent;
+  left: 11px;
+  margin-top: 32px;
+  margin-left: 53px;
+  display: none;
+}
+
+/* Body */
+.hangman-draw .body {
+  content: "";
+  width: 4px;
+  position: absolute;
+  background-color: #eee;
+  height: 89px;
+  left: 11px;
+  margin-top: 77px;
+  margin-left: 76px;
+  display: none;
+}
+
+/* Hands */
+.hangman-draw .the-man .hands {
+  display: none;
+}
+
+.hangman-draw .the-man .hands:before {
+  left: 85px;
+  transform: rotate(30deg);
+}
+
+.hangman-draw .the-man .hands:after {
+  left: 130px;
+  transform: rotate(-30deg);
+}
+
+.hangman-draw .the-man .hands:before,
+.hangman-draw .the-man .hands:after {
+  content: '';
+  width: 48px;
+  position: absolute;
+  height: 4px;
+  background-color: #eee;
+  top: 79px;
+  right: 48px;
+  margin-left: -42px;
+}
+
+/* Legs */
+.hangman-draw .legs {
+  display: none;
+}
+
+.hangman-draw .legs:before {
+  content: "";
+  width: 4px;
+  position: absolute;
+  background-color: #eee;
+  height: 57px;
+  left: -20px;
+  margin-top: 157px;
+  margin-left: 123px;
+  transform: rotate(324deg);
+}
+
+.hangman-draw .legs:after {
+  content: "";
+  width: 4px;
+  position: absolute;
+  background-color: #eee;
+  height: 57px;
+  left: -20px;
+  margin-top: 157px;
+  margin-left: 92px;
+  transform: rotate(32deg);
+}
+
+/* Show parts on wrong attempts */
+.hangman-draw.wrong-1 .the-draw { display: block; }
+.hangman-draw.wrong-2 .the-stand:before { display: block; }
+.hangman-draw.wrong-3 .the-hang:before { display: block; }
+.hangman-draw.wrong-4 .the-hang:after { display: block; }
+.hangman-draw.wrong-5 .head:after { display: block; }
+.hangman-draw.wrong-6 .body { display: block; }
+.hangman-draw.wrong-7 .hands { display: block; }
+.hangman-draw.wrong-8 .legs { display: block; }
+
+/* Letters Grid */
+.letters {
+  flex: 1;
+  padding: clamp(10px, 2vw, 20px);
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(36px, 1fr));
+  gap: clamp(6px, 2vw, 12px);
+  justify-items: center;
+}
+
+/* Letter Boxes */
+.letters .letter-box {
+  width: clamp(32px, 7vw, 48px);
+  height: clamp(32px, 7vw, 48px);
+  background-color: #333;
+  color: #eee;
+  font-size: clamp(14px, 3vw, 20px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-transform: uppercase;
+  font-weight: bold;
+  cursor: pointer;
+  border-radius: 6px;
+  transition: all 0.25s ease;
+}
+
+.letters .letter-box:hover {
+  background-color: #444;
+  transform: scale(1.05);
+}
+
+.letters .letter-box.clicked {
+  background-color: rgb(104, 21, 28);
+  pointer-events: none;
+}
+
+/* Disable clicks when finished */
+.letters.finished .letter-box {
+  pointer-events: none;
+  background-color: thistle;
+}
+
+/* Letters Guess */
+.letters-guess {
+  margin: 20px auto;
+  background-color: #2a2a2a;
+  padding: clamp(12px, 3vw, 24px);
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: clamp(4px, 1vw, 10px);
+  border-radius: 8px;
+}
+
+.letters-guess span {
+  width: clamp(22px, 6vw, 42px);
+  height: clamp(22px, 6vw, 42px);
+  font-size: clamp(12px, 3vw, 18px);
+  background-color: #1e1e1e;
+  border-bottom: 2px solid #03dac6;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  border-radius: 4px;
+  transition: 0.3s;
+}
+
+.letters-guess .with-space {
+  background: none;
+  border-bottom: none;
+  position: relative;
+  width: clamp(8px, 2vw, 16px);
+}
+
+.letters-guess .with-space::before {
+  content: "";
+  width: 20px;
+  height: 4px;
+  background-color: #967696;
+  position: absolute;
+  left: -69%;
+  top: 43%;
+  transform: translate(50%, 50%);
+}
+
+/* Popup */
+.popup {
+  position: fixed;
+  background-color: #444;
+  padding: 100px 20px;
+  width: 80%;
+  top: 10%;
+  left: 10%;
+  text-align: center;
+  font-size: 40px;
+  border: 1px solid #CCC;
+  color: #FFF;
+  z-index: 9999;
+  border-radius: 12px;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.4);
+  user-select: none;
+}
+.foot{
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    text-align: center;
+    background-color: #222;
+}
+.owner{
+cursor: pointer;
+
+}
+.owner:hover{
+  cursor: pointer;
+  color: #ff4081;
+  }
+  
